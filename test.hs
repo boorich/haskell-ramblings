@@ -23,7 +23,7 @@ doubleUs x y = doubleMe x + doubleMe y
 
 doubleSmallNumber x = if x > 100
                         then x
-                        else x * 2
+                        else x * 2 -- this is mandatory
 
 doubleSmallNumber' x = (if x > 100 then x else x * 2) + 1
 
@@ -91,3 +91,49 @@ addThree x y z = x + y + z
 
 factorial :: Integer -> Integer
 factorial n =  product[1..n]
+
+lucky :: (Integral a) => a -> String  
+lucky 7 = "LUCKY NUMBER SEVEN!"  
+lucky x = "Sorry, you're out of luck, pal!"  
+
+factorial' :: (Integral a) => a -> a  
+factorial' 0 = 1  
+factorial' n = n * factorial' (n - 1)  
+
+-- Pattern Matching
+sayMe :: (Integral a) => a -> String  
+sayMe 1 = "One!"  
+sayMe 2 = "Two!"  
+sayMe 3 = "Three!"  
+sayMe 4 = "Four!"  
+sayMe 5 = "Five!"  
+sayMe x = "Not between 1 and 5"  
+
+charName :: Char -> String  
+charName 'a' = "Albert"  
+charName 'b' = "Broseph"  
+charName 'c' = "Cecil"
+charName _ = "Can't tell this name."
+
+addVectors :: (Num a) => (a, a) -> (a, a) -> (a, a)  
+addVectors (x1, y1) (x2, y2) = (x1 + x2, y1 + y2)  -- inbuilt catch-all pattern
+
+-- Extracing from tuples
+first :: (a, b, c) -> a  
+first (x, _, _) = x  
+  
+second :: (a, b, c) -> b  
+second (_, y, _) = y  
+  
+third :: (a, b, c) -> c  
+third (_, _, z) = z
+
+head' :: [a] -> a  
+head' [] = error "Can't call head on an empty list!"  -- if empty
+head' (x:_) = x -- everything else
+
+tell :: (Show a) => [a] -> String  
+tell [] = "The list is empty"  
+tell (x:[]) = "The list has one element: " ++ show x  
+tell (x:y:[]) = "The list has two elements: " ++ show x ++ " and " ++ show y  
+tell (x:y:_) = "This list is long. The first two elements are: " ++ show x ++ " and " ++ show y  
